@@ -337,14 +337,14 @@ return [
             'icon' => 'fas fa-fw fa-eye',
             'submenu' => [
                 [
-                    'text' => 'Portal Transparência',
-                    'icon' => 'fas fa-fw fa-eye',
-                    'url' => '#',
-                ],
-                [
                     'text' => 'Categoria',
                     'icon' => 'fas fa-fw fa-tags',
-                    'url' => '#',
+                    'route' => 'categ_portal_transparencia.index',
+                ],
+                [
+                    'text' => 'Portal Transparência',
+                    'icon' => 'fas fa-fw fa-eye',
+                    'route' => 'portal_transparencia.index',
                 ],
             ],
         ],
@@ -353,53 +353,24 @@ return [
             'icon' => 'fas fa-fw fa-eye',
             'submenu' => [
                 [
+                    'text' => 'Categoria Perfil',
+                    'icon' => 'fas fa-fw fa-tag',
+                    'route' => 'servicos_categoria_perfil.index',
+                ],
+                [
+                    'text' => 'Categoria Tipo',
+                    'icon' => 'fas fa-fw fa-tag',
+                    'route' => 'servicos_categoria_tipo.index',
+                ],
+                [
                     'text' => 'Serviços',
                     'icon' => 'fas fa-fw fa-eye',
-                    'url' => '#',
+                    'route' => 'servicos.index',
                 ],
-                [
-                    'text' => 'Categorias',
-                    'icon' => 'fas fa-fw fa-tag',
-                    'url' => '#',
-                ],
+
             ],
         ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
+
     ],
 
     /*
