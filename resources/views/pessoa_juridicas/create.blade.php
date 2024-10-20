@@ -37,6 +37,20 @@
                             @endif
                         </div>
                         <div class="mb-3">
+                            <label for="horario" class="form-label">Cargo:</label>
+                            <select name="id_cargo" id="id_cargo"
+                                    class="form-control">
+                                @foreach(\App\Models\Base\CargosPessoaJuridica::all() as $cargo)
+                                    <option value="{{$cargo->id}}">
+                                        {{ $cargo->nome }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('horario'))
+                                <div class='error small text-danger'>{{$errors->first('horario')}}</div>
+                            @endif
+                        </div>
+                        <div class="mb-3">
                             <label for="endereco" class="form-label">Endereco:</label>
                             <textarea name="endereco" id="endereco" class="form-control">{{@old('endereco')}}</textarea>
                             @if($errors->has('endereco'))
@@ -65,4 +79,16 @@
             </div>
         </div>
     </div>
+    @push('js')
+        <script>
+            tinymce.init({
+                selector: 'textarea', // Replace this CSS selector to match the placeholder element for TinyMCE
+                plugins: 'code table lists',
+                toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+
+            });
+        </script>
+    @endpush
 @endsection
+
+

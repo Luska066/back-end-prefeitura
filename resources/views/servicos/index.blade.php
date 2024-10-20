@@ -35,7 +35,7 @@
                     @foreach($servicos as $servico)
                         <tr>
                             <td data-label="Id Categoria Perfil">{{ $servico->servicos_categoria_perfil->nome ?: "(blank)" }}</td>
-                            <td data-label="Id Categoria Tipo">{{ $servico->servicos_categoria_tipo->nome ?: "(blank)" }}</td>
+                            <td data-label="Id Categoria Tipo">{{ $servico->servicos_categoria_tipo->nomenv ?: "(blank)" }}</td>
                             <td data-label="Titulo">{{ $servico->titulo ?: "(blank)" }}</td>
                             <td data-label="Descricao">{{ Str::limit($servico->descricao, 50) ?: "(blank)"}}</td>
                             <td data-label="Redirect Uri">{{ Str::limit($servico->redirect_uri, 50) ?: "(blank)"}}</td>

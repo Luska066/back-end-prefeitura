@@ -57,11 +57,11 @@ class PessoaJuridicaController extends Controller
         $request->validate([]);
 
         try {
-
             $pessoaJuridica = new PessoaJuridica();
             $pessoaJuridica->nome = $request->nome;
             $pessoaJuridica->email = $request->email;
             $pessoaJuridica->horario = $request->horario;
+            $pessoaJuridica->id_cargo = $request->id_cargo;
             $pessoaJuridica->endereco = $request->endereco;
             $pessoaJuridica->competencias = $request->competencias;
             $pessoaJuridica->save();
@@ -114,6 +114,7 @@ class PessoaJuridicaController extends Controller
             $pessoaJuridica->nome = $request->nome;
             $pessoaJuridica->email = $request->email;
             $pessoaJuridica->horario = $request->horario;
+            $pessoaJuridica->id_cargo = $request->id_cargo;
             $pessoaJuridica->endereco = $request->endereco;
             $pessoaJuridica->competencias = $request->competencias;
             $pessoaJuridica->save();

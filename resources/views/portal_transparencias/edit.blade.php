@@ -10,7 +10,7 @@
                 </ol>
             </div>
             <div class="card-body">
-                <form action="{{ route('portal_transparencias.update', compact('portalTransparencium')) }}" method="POST" class="m-0 p-0">
+                <form action="{{ route('portal_transparencia.update', $portalTransparencium->id) }}" method="POST" class="m-0 p-0">
                     @method('PUT')
                     @csrf
                     <div class="card-body">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex flex-row align-items-center justify-content-between">
-                            <a href="{{ route('portal_transparencias.index', []) }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ route('portal_transparencia.index', []) }}" class="btn btn-light">Cancel</a>
                             <button type="submit" class="btn btn-primary">@lang('Update Portal Transparencium')</button>
                         </div>
                     </div>

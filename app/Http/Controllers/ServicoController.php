@@ -59,7 +59,7 @@ class ServicoController extends Controller {
 		$servico->titulo = $request->titulo;
 		$servico->descricao = $request->descricao;
 		$servico->redirect_uri = $request->redirect_uri;
-		$servico->icon = $request->icon;
+		$servico->icon = "fa-".$request->icon;
             $servico->save();
 
             return redirect()->route('servicos.index', [])->with('success', __('Servico created successfully.'));
@@ -109,7 +109,7 @@ class ServicoController extends Controller {
 		$servico->titulo = $request->titulo;
 		$servico->descricao = $request->descricao;
 		$servico->redirect_uri = $request->redirect_uri;
-		$servico->icon = $request->icon;
+		$servico->icon = "fa-".$request->icon;
             $servico->save();
 
             return redirect()->route('servicos.index', [])->with('success', __('Servico edited successfully.'));
@@ -136,5 +136,5 @@ class ServicoController extends Controller {
         }
     }
 
-    
+
 }

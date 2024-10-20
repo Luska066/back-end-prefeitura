@@ -14,6 +14,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::prefix('/estrutura-organizacional')->group(function () {
+    Route::get('', [\App\Http\Controllers\API\V1\EstruturaOrganizacional::class, 'getAll']);
+    Route::get('filters', [\App\Http\Controllers\API\V1\EstruturaOrganizacional::class, 'getFilters']);
+    Route::get('/{id}', [\App\Http\Controllers\API\V1\EstruturaOrganizacional::class, 'getById']);
+})->middleware('client');
+
+Route::prefix('/gabinete')->group(function () {
+    Route::get('/prefeito', [\App\Http\Controllers\API\V1\EstruturaOrganizacional::class, 'gabinetePrefeito']);
+    Route::get('/vice-prefeito', [\App\Http\Controllers\API\V1\EstruturaOrganizacional::class, 'gabineteVicePrefeito']);
+})->middleware('client');
+
+Route::prefix('/transparencia')->group(function () {
+    Route::get('', [\App\Http\Controllers\API\V1\PortalTransparencia::class, 'index']);
+    Route::get('filters', [\App\Http\Controllers\API\V1\PortalTransparencia::class, 'filters']);
+})->middleware('client');
+
+Route::prefix('/servicos')->group(function () {
+    Route::get('', [\App\Http\Controllers\API\V1\PortalServicos::class, 'getAll']);
+    Route::get('filters', [\App\Http\Controllers\API\V1\PortalServicos::class, 'getFiltersPerfilAndCategoria']);
+})->middleware('client');
+
+Route::prefix('/cidade')->group(function () {
+    Route::get('historia', [\App\Http\Controllers\API\V1\ACidade::class, 'getHistory']);
+    Route::get('filters', [\App\Http\Controllers\API\V1\PortalServicos::class, 'getFiltersPerfilAndCategoria']);
+})->middleware('client');

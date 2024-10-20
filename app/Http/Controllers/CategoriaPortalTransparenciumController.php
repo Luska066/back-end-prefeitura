@@ -69,7 +69,7 @@ class CategoriaPortalTransparenciumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(CategoriaPortalTransparencium $categoriaPortalTransparencium,) {
+    public function show(CategoriaPortalTransparencium $categoriaPortalTransparencium) {
 
         return view('categoria_portal_transparencias.show', compact('categoriaPortalTransparencium'));
     }
@@ -81,9 +81,8 @@ class CategoriaPortalTransparenciumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategoriaPortalTransparencium $categoriaPortalTransparencium,) {
-
-        return view('categoria_portal_transparencias.edit', compact('categoriaPortalTransparencium'));
+    public function edit(CategoriaPortalTransparencium $categ_portal_transparencium,) {
+        return view('categoria_portal_transparencias.edit', compact('categ_portal_transparencium'));
     }
 
     /**

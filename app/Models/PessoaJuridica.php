@@ -2,14 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Base\PessoaJuridica as BasePessoaJuridica;
 
-class PessoaJuridica extends Model {
-    use HasFactory;
-
-    protected $table = 'pessoa_juridica';
-    protected $fillable = ["nome", "email", "horario", "endereco", "competencias"];
+class PessoaJuridica extends BasePessoaJuridica
+{
 
 }

@@ -32,11 +32,18 @@
                             @endif
                         </div>
                         <div class="mb-3">
-                            <label for="horario" class="form-label">Horario:</label>
-                            <textarea name="horario" id="horario"
-                                      class="form-control">{{@old('horario', $pessoaJuridica->horario)}}</textarea>
-                            @if($errors->has('horario'))
-                                <div class='error small text-danger'>{{$errors->first('horario')}}</div>
+                            <label for="id_cargo" class="form-label">Cargo:</label>
+                            <select name="id_cargo" id="id_cargo"
+                                      class="form-control">
+                                @foreach(\App\Models\Base\CargosPessoaJuridica::all() as $cargo)
+                                    <option value="{{$cargo->id}}"
+                                            @if($cargo->id == $pessoaJuridica->id_cargo) selected @endif>
+                                        {{ $cargo->nome }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('id_cargo'))
+                                <div class='error small text-danger'>{{$errors->first('id_cargo')}}</div>
                             @endif
                         </div>
                         <div class="mb-3">
@@ -55,6 +62,14 @@
                                 <div class='error small text-danger'>{{$errors->first('competencias')}}</div>
                             @endif
                         </div>
+                        <div class="mb-3">
+                            <label for="horario" class="form-label">Horário:</label>
+                            <textarea name="horario" id="horario"
+                                      class="form-control">{{@old('horario', $pessoaJuridica->horario)}}</textarea>
+                            @if($errors->has('horario'))
+                                <div class='error small text-danger'>{{$errors->first('horario')}}</div>
+                            @endif
+                        </div>
 
                     </div>
                     <div class="card-footer">
@@ -67,4 +82,18 @@
             </div>
         </div>
     </div>
+    @push('js')
+
+        <script>
+            tinymce.init({
+                selector: 'textarea', // Replace this CSS selector to match the placeholder element for TinyMCE
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            });
+        </script>
+    @endpush
 @endsection

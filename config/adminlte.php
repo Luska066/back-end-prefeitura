@@ -321,6 +321,11 @@ return [
                     'route' => 'categ_est_organizacional.index',
                 ],
                 [
+                    'text' => 'Cargo Pessoa Jurídica',
+                    'icon' => 'fas fa-fw fa-tags',
+                    'route' => 'cargos_pessoa_juridica.index',
+                ],
+                [
                     'text' => 'Pessoa Jurídica',
                     'icon' => 'fas fa-fw fa-tags',
                     'route' => 'pessoa_juridica.index',
@@ -366,6 +371,18 @@ return [
                     'text' => 'Serviços',
                     'icon' => 'fas fa-fw fa-eye',
                     'route' => 'servicos.index',
+                ],
+
+            ],
+        ],
+        [
+            'text' => 'A Cidade',
+            'icon' => 'fas fa-fw fa-eye',
+            'submenu' => [
+                [
+                    'text' => 'História',
+                    'icon' => 'fas fa-fw fa-tag',
+                    'route' => 'historia.index',
                 ],
 
             ],

@@ -100,7 +100,7 @@ class EstruturaController extends Controller
         $request->validate([]);
 
         try {
-
+            $estrutura->fill($request->all());
             $estrutura->save();
 
             return redirect()->route('estrutura.index', [])->with('success', __('Estrutura edited successfully.'));

@@ -61,7 +61,7 @@ class PortalTransparenciumController extends Controller
             $portalTransparencium->titulo = $request->titulo;
             $portalTransparencium->id_categoria_portal_transparencia = $request->id_categoria_portal_transparencia;
             $portalTransparencium->redirect_uri = $request->redirect_uri;
-            $portalTransparencium->icon = $request->icon;
+            $portalTransparencium->icon = "fa-".$request->icon;
             $portalTransparencium->save();
 
             return redirect()->route('portal_transparencia.index', [])->with('success', __('Portal Transparencium created successfully.'));
@@ -112,7 +112,7 @@ class PortalTransparenciumController extends Controller
             $portalTransparencium->titulo = $request->titulo;
             $portalTransparencium->id_categoria_portal_transparencia = $request->id_categoria_portal_transparencia;
             $portalTransparencium->redirect_uri = $request->redirect_uri;
-            $portalTransparencium->icon = $request->icon;
+            $portalTransparencium->icon = "fa-".$request->icon;
             $portalTransparencium->save();
 
             return redirect()->route('portal_transparencia.index', [])->with('success', __('Portal Transparencium edited successfully.'));
