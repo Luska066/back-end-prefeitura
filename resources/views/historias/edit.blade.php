@@ -10,9 +10,18 @@
                 </ol>
             </div>
             <div class="card-body">
-                <form action="{{ route('historia.update', $historium->id) }}" method="POST" class="m-0 p-0">
+                <form action="{{ route('historia.update', $historium->id) }}" method="POST" class="m-0 p-0"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
+                    <div class="mb-3 mx-3">
+                        <label for="image" class="form-label">Image:</label>
+                        <input type="file" name="image" id="image" class="form-control"
+                            value="{{ @old('image', $historium->image) }}" required />
+                        @if ($errors->has('image'))
+                            <div class='error small text-danger'>{{ $errors->first('image') }}</div>
+                        @endif
+                    </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="title" class="form-label">Title:</label>
@@ -67,14 +76,6 @@
                             <textarea name="content" id="content" class="form-control" required>{{ @old('content', $historium->content) }}</textarea>
                             @if ($errors->has('content'))
                                 <div class='error small text-danger'>{{ $errors->first('content') }}</div>
-                            @endif
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Image:</label>
-                            <input type="text" name="image" id="image" class="form-control"
-                                value="{{ @old('image', $historium->image) }}" required />
-                            @if ($errors->has('image'))
-                                <div class='error small text-danger'>{{ $errors->first('image') }}</div>
                             @endif
                         </div>
 
