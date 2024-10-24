@@ -2,28 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FileService;
 use Illuminate\Http\Request;
 
 use App\Models\Historium;
 
-class HistoriumController extends Controller {
+class HistoriumController extends Controller
+{
 
-    public function __construct() {
-		$this->authorizeResource(Historium::class, 'historium');
-	}
+    public function __construct()
+    {
+        $this->authorizeResource(Historium::class, 'historium');
+    }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, ) {
+    public function index(Request $request, )
+    {
 
         $historia = Historium::query();
 
-        if(!empty($request->search)) {
-			$historia->where('title', 'like', '%' . $request->search . '%');
-		}
+        if (!empty($request->search)) {
+            $historia->where('title', 'like', '%' . $request->search . '%');
+        }
 
         $historia = $historia->paginate(10);
 
@@ -35,7 +39,8 @@ class HistoriumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
 
         return view('historias.create', []);
     }
@@ -47,21 +52,30 @@ class HistoriumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ) {
+    public function store(Request $request, )
+    {
 
-        $request->validate(["title" => "required", "fundacao" => "required", "aniversario" => "required", "gentilico" => "required", "populacao" => "required", "area" => "required", "content" => "required"]);
+        $request->validate([
+            "title" => "required",
+            "fundacao" => "required",
+            "aniversario" => "required",
+            "gentilico" => "required",
+            "populacao" => "required",
+            "area" => "required",
+            "content" => "required"
+        ]);
 
         try {
-
+            $filePath = $request->hasFile('image') ? FileService::storeImage($request, 'historia') : null;
             $historium = new Historium();
             $historium->title = $request->title;
-		$historium->fundacao = $request->fundacao;
-		$historium->aniversario = $request->aniversario;
-		$historium->gentilico = $request->gentilico;
-		$historium->populacao = $request->populacao;
-		$historium->area = $request->area;
-		$historium->content = $request->content;
-		$historium->image = $request->image;
+            $historium->fundacao = $request->fundacao;
+            $historium->aniversario = $request->aniversario;
+            $historium->gentilico = $request->gentilico;
+            $historium->populacao = $request->populacao;
+            $historium->area = $request->area;
+            $historium->content = $request->content;
+            $historium->image = $filePath;
             $historium->save();
 
             return redirect()->route('historia.index', [])->with('success', __('Historium created successfully.'));
@@ -78,7 +92,8 @@ class HistoriumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Historium $historium,) {
+    public function show(Historium $historium, )
+    {
 
         return view('historias.show', compact('historium'));
     }
@@ -90,7 +105,8 @@ class HistoriumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Historium $historium,) {
+    public function edit(Historium $historium, )
+    {
 
         return view('historias.edit', compact('historium'));
     }
@@ -102,23 +118,35 @@ class HistoriumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Historium $historium,) {
+    public function update(Request $request, Historium $historium, )
+    {
 
-        $request->validate(["title" => "required", "fundacao" => "required", "aniversario" => "required", "gentilico" => "required", "populacao" => "required", "area" => "required", "content" => "required"]);
+        $request->validate([
+            "title" => "required",
+            "fundacao" => "required",
+            "aniversario" => "required",
+            "gentilico" => "required",
+            "populacao" => "required",
+            "area" => "required",
+            "content" => "required"
+        ]);
 
         try {
+            $filePath = $request->hasFile('image') ? FileService::storeImage($request, 'historia') : null;
             $historium->title = $request->title;
-		$historium->fundacao = $request->fundacao;
-		$historium->aniversario = $request->aniversario;
-		$historium->gentilico = $request->gentilico;
-		$historium->populacao = $request->populacao;
-		$historium->area = $request->area;
-		$historium->content = $request->content;
+            $historium->fundacao = $request->fundacao;
+            $historium->aniversario = $request->aniversario;
+            $historium->gentilico = $request->gentilico;
+            $historium->populacao = $request->populacao;
+            $historium->area = $request->area;
+            $historium->content = $request->content;
+            $historium->image = $filePath;
             $historium->save();
 
-            return redirect()->route('historias.index', [])->with('success', __('Historium edited successfully.'));
+            return redirect()->route('historia.index', [])->with('success', __('Historium edited successfully.'));
         } catch (\Throwable $e) {
-            return redirect()->route('historias.edit', compact('historium'))->withInput($request->input())->withErrors(['error' => $e->getMessage()]);
+            dd($e);
+            return redirect()->route('historia.edit', compact('historium'))->withInput($request->input())->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -129,7 +157,8 @@ class HistoriumController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Historium $historium,) {
+    public function destroy(Historium $historium, )
+    {
 
         try {
             $historium->delete();
