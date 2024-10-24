@@ -366,7 +366,17 @@ return [
                     'text' => 'Categoria Tipo',
                     'icon' => 'fas fa-fw fa-tag',
                     'route' => 'servicos_categoria_tipo.index',
+                ],[
+                    'text' => 'Categoria Noticias',
+                    'icon' => 'fas fa-fw fa-tag',
+                    'route' => 'categorias_noticias.index',
+                ]
+                ,[
+                    'text' => 'Noticias',
+                    'icon' => 'fas fa-fw fa-tag',
+                    'route' => 'noticias.index',
                 ],
+                
                 [
                     'text' => 'Serviços',
                     'icon' => 'fas fa-fw fa-eye',
