@@ -47,16 +47,14 @@ Route::prefix('/cidade')->group(function () {
 // Route::prefix('/noticias')->group(function () {
 //     // Route::get('', [\App\Http\Controllers\API\V1\Noticias::class, 'getAll']);
 //     Route::get('', [\App\Http\Controllers\API\V1\Noticias::class, 'firtsNoticias']);
-//     Route::get('/{uuid}', [\App\Http\Controllers\API\V1\Noticias::class, 'uuidNoticia']);   
+//     Route::get('/{uuid}', [\App\Http\Controllers\API\V1\Noticias::class, 'uuidNoticia']);
 //     Route::get('noticias', [\App\Http\Controllers\API\V1\Noticias::class, 'tituloNoticia']);
-    
+
 //     Route::get('filters', [\App\Http\Controllers\API\V1\Noticias::class, 'getFiltersCategorias']);
 // })->middleware('client');
 
 Route::prefix('/noticias')->group(function () {
-    Route::get('', [\App\Http\Controllers\API\V1\Noticias::class, 'firtsNoticias']);
-    Route::get('/{uuid}', [\App\Http\Controllers\API\V1\Noticias::class, 'uuidNoticia']);   
-    Route::get('/titulo', [\App\Http\Controllers\API\V1\Noticias::class, 'tituloNoticia']);
-    
+    Route::get('', [\App\Http\Controllers\API\V1\Noticias::class, 'firstNoticias']);
+    Route::get('/{uuid}', [\App\Http\Controllers\API\V1\Noticias::class, 'uuidNoticia']);
     Route::get('filters', [\App\Http\Controllers\API\V1\Noticias::class, 'getFiltersCategorias']);
 })->middleware('client');

@@ -133,6 +133,7 @@ class HistoriumController extends Controller
 
         try {
             $filePath = $request->hasFile('image') ? FileService::storeImage($request, 'historia') : null;
+
             $historium->title = $request->title;
             $historium->fundacao = $request->fundacao;
             $historium->aniversario = $request->aniversario;
